@@ -1,10 +1,10 @@
 let score = "45ab"
 
-//console.log(typeof score);
-//console.log(typeof (score));
+// console.log(typeof score);
+// console.log(typeof (score));
 
 let valueInNumber = Number(score)
-//console.log(typeof valueInNumber);
+// console.log(typeof valueInNumber);
 // console.log(valueInNumber);
 
 // "33" => 33
@@ -32,3 +32,35 @@ let stringNumber = String(someNumber)
 
 // **************************** Operations *******************************
 
+let value = 3
+let negValue = -value
+// console.log(negValue);
+
+str1 = "hello"
+str2 = " Farzan"
+
+str3 = str1 + str2
+// console.log(str3);
+
+// console.log(2 + 2);
+// console.log(2 - 2);
+// console.log(2 * 2);
+// console.log(2 ** 2);     =>power 
+// console.log(2 % 2);
+// console.log(2 / 2);
+
+
+
+// console.log("1" + 2);
+// console.log(1 + "2");
+// console.log("1" + 2 + 2); // first is string so remaining sticks to the string
+// console.log(1 + 2 + "2");     // due to of type conversion it applies
+
+// console.log(2 + 4 * 5 % 3);   
+/* don't use this type of syntax, do use parantheses strictly for best practice. */
+
+// console.log(+true);     // boolean value and putting + will increment it to 1.
+
+let gameCounter = 100;
+++gameCounter;
+console.log(gameCounter);
