@@ -45,7 +45,7 @@ str3 = str1 + str2
 // console.log(2 + 2);
 // console.log(2 - 2);
 // console.log(2 * 2);
-// console.log(2 ** 2);     =>power 
+// console.log(2 ** 2);     => power 
 // console.log(2 % 2);
 // console.log(2 / 2);
 
