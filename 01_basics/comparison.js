@@ -21,7 +21,7 @@ That's why in 6th line 'null >= 0' is true and in 4th line null > 1 is false.
 
 // --------------------------------------------------------------- // 
 
-// === strict checking 
+// (===) strict checking 
 
 console.log("2" === 2);            // it checks the datatypes as well while comparison.
 
