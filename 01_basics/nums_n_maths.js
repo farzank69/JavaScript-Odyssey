@@ -41,3 +41,5 @@ const max = 60;                 // we can use these min max values to create a d
 
 console.log(Math.floor(Math.random() * (max - min + 1)) + min);   // +1 we're using to avoid 0.
 // This above line is very important (Line: 42)
+
+// Video: 12
