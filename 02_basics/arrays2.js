@@ -36,3 +36,4 @@ let score2 = 200;
 let score3 = 400;
 
 console.log(Array.of(score1, score2, score3)); // of combines the different values into a single array.
+
