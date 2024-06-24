@@ -59,3 +59,12 @@ handleObject({
     username : "bourbon",
     price: 399
 })
+
+const newArray = [200, 400, 800, 1000]
+
+function returnSecondValue(getArray) {
+    return getArray[1]
+}
+// console.log(returnSecondValue(newArray));
+// one more way of calling.
+console.log(returnSecondValue([200, 300, 500, 800]));
