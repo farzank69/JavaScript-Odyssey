@@ -5,7 +5,10 @@
 //     isActive: true
 // }
 Object.defineProperty(exports, "__esModule", { value: true });
-function createUser(user) {
-    return { name: "", email: "", isActive: true };
-}
-createUser({ name: "", email: "", isActive: true });
+var myUser = {
+    _id: "1234",
+    name: "farzan",
+    email: "farzan@example.com",
+    isActive: false
+};
+myUser.email = "farzan@gmail.com";

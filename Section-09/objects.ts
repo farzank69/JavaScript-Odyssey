@@ -17,16 +17,50 @@
 
 // Type Alias
 
+// type User = {
+//     name: string;
+//     email: string;
+//     isActive: boolean;
+// }
+
+// function createUser(user: User): User{           // this method will return User as a type
+//     return {name: "", email: "", isActive: true}
+// }
+// createUser({name: "", email: "", isActive: true})
+
+
+
+// READONLY and optional
+
 type User = {
+    readonly _id: string     // you can't change the type of this id (referring to mongodb id)
     name: string;
-    email: string;
-    isActive: boolean;
+    email: string
+    isActive: boolean
+    creditcardDetails?: number      // ? means this field is optional.
 }
 
-function createUser(user: User): User{           // this method will return User as a type
-    return {name: "", email: "", isActive: true}
+let myUser: User = {
+    _id: "1234",
+    name: "farzan",
+    email: "farzan@example.com",
+    isActive: false
 }
-createUser({name: "", email: "", isActive: true})
+
+type cardNumber = {
+    cardnumber: string
+}
+type cardDate = {
+    cardDate: string
+}
+type cardDetails = cardNumber & cardDate & {cvv: number}  // & here to combine the details.
+
+
+myUser.email = "farzan@gmail.com"
+// myUser._id = "asdf"    // can change as it is only readonly
+
+
+
 
 
 export {}
