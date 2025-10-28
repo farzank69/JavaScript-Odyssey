@@ -1,17 +1,11 @@
 "use strict";
+// const User = {
+//     name: "farzan",
+//     email: "farzan@gmail.com",
+//     isActive: true
+// }
 Object.defineProperty(exports, "__esModule", { value: true });
-var User = {
-    name: "farzan",
-    email: "farzan@gmail.com",
-    isActive: true
-};
-// Use case of object is through the functions
-function createUser(_a) {
-    var string = _a.name, boolean = _a.isActive;
+function createUser(user) {
+    return { name: "", email: "", isActive: true };
 }
-// bad way of using objects.
-var newUser = { name: "farzan", isActive: false, email: "@example.com" };
-createUser(newUser);
-function createCourse() {
-    return { name: "webdev", price: 399 };
-}
+createUser({ name: "", email: "", isActive: true });
