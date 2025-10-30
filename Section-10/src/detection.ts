@@ -30,3 +30,47 @@ function printAll(strs: string | string[] | null) {
     }
   }
 }
+
+// "in" operator in narrowing
+interface User{
+    name: string,
+    email: string
+}
+interface Admin{
+    name: string,
+    email: string,
+    isAdmin: boolean
+}
+
+function isAdminAccount(account: User | Admin){
+    if ("isAdmin" in account) {       // this helps in narrow down the interface 
+        return account.isAdmin
+    }
+}
+
+// instanceof narrowing -> used in when new is used.
+function logValue(x: Date | string){
+    if(x instanceof Date){
+        console.log(x.toUTCString());
+    } else {
+        console.log(x.toUpperCase);
+    }
+}
+
+// type predicates
+type Fish = {swim: () => void};
+type Bird = {fly: () => void};
+
+function isFish(pet: Fish | Bird): pet is Fish{      // using the function return type (pet is fish), this now clearly states that this function will return a value.
+    return(pet as Fish) !== undefined      // this function is return boolean value for now
+}
+
+function getFood(pet: Fish | Bird) {
+    if(isFish(pet)){
+        pet
+        return "fish food"
+    } else {
+        pet
+        return "bird food"
+    }
+}
