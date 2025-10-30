@@ -34,8 +34,41 @@ interface container {
 // }
 
 // Generic Arrow function
-const getMoreSearchProducts = <T,>(products: T[]): T => {        // the comma after T is to mention that it's not a jsx type rather its generic.
-    // do some database operations
-    const myIndex = 4
-    return products[myIndex]
+// const getMoreSearchProducts = <T,>(products: T[]): T => {        // the comma after T is to mention that it's not a jsx type rather its generic.
+//     // do some database operations
+//     const myIndex = 4
+//     return products[myIndex]
+// }
+
+interface Database{
+    connection: string,
+    username: string,
+    password: string
+}
+
+function getUser<T, U extends string>(valOne: T, valTwo: U): object {
+    return { 
+        valOne,
+        valTwo
+    }
+}
+// getUser(1,2)     as it extends the generic to string it won't work further (so we can even specify the generic like which type it can take)
+
+interface quiz {
+    name: string
+    type: string
+}
+
+interface course{
+    name: string
+    author: string
+    subject: string
+}
+
+class sellable<T>{ 
+    public cart: T[] = []             // this will be the generic type and will take array of it.
+
+    addToCart(product: T){
+        this.cart.push(product)      // whatever type of product it will be; get pushed into the cart.
+    }
 }
