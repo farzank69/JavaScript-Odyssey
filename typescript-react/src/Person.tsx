@@ -49,7 +49,7 @@ export const User = (props: Props) => {
                 {props.name} Bio: {!UserBio ? "No Bio Avaliable" : UserBio} 
             </p>
             <input onChange={handleChange}/>
-        <button onClick={toggleInfo}>Toggle Info</button>
+        {/* <button onClick={toggleInfo}>Toggle Info</button> */}
         </div>
     );
 }
