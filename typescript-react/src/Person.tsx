@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserContext } from "./UserContextProvider";
+// import { UserContext } from "./UserContextProvider";
 
 interface Props {
     name: string;
