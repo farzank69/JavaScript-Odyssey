@@ -5,6 +5,14 @@ interface Props {
     name: string;
     age: number;
     isMarried: boolean;
+    country: Countries;
+}
+
+export enum Countries {
+    India = "India",
+    UnitedStates = "United States",
+    Brazil = "Brazil",
+    Spain = "Spain",
 }
 
 export const User = (props: Props) => {
@@ -33,6 +41,7 @@ export const User = (props: Props) => {
                 <p>Name: {props.name}</p>
                 <p>Age: {props.age}</p>
                 <p>This User {props.isMarried ? "is Married" : "is single"}</p>
+                <p>Country of Origin: {props.country}</p>
             </>
             )}
             <p> 
