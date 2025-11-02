@@ -56,3 +56,62 @@ class Car extends Vehicle {
 let myCar = new Car("Toyota", "Corolla");
 // console.log(myCar.start());
 // console.log(myCar.drive());
+
+// Encapsulation
+class BankAccount {
+    #balance = 0         // only methods inside this class can access it. 
+
+    deposit(amount){
+        this.#balance += amount
+        return this.#balance;
+    }
+
+    getBalance(){
+        return `$ ${this.#balance}`;
+    }
+}
+let myaccount = new BankAccount();
+// console.log(myaccount.getBalance());
+
+// Abstraction  -> ignoring the complex things or what's happenning under the hood just provide me the end result.
+class CoffeeMachine {
+    start (){
+        // here it can have bunch of complex logic
+        return `starting the machine...`
+    }
+    brew () {
+        // again alot of complex logics
+        return `brewing coffee`
+    }
+    pushButton () {
+        let msgone = this.start()
+        let msgtwo = this.brew()
+        return `${msgone} \n${msgtwo}`
+    }}
+
+let mycoffee = new CoffeeMachine();
+// console.log(mycoffee.start());
+// console.log(mycoffee.brew());
+// console.log(mycoffee.pushButton());
+
+
+// Polymorphism -> one can have many forms like below the method fly have different results in different classes.
+
+class Bird {
+    fly(){
+        return `flying...`;
+    }
+}
+class Penguin extends Bird {
+    fly(){
+        return `Penguins can't fly`;
+    }
+}
+let bird = new Bird();
+let penguin = new Penguin();
+// console.log(bird.fly());
+// console.log(penguin.fly());
+
+
+// static method
+
