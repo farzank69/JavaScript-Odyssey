@@ -113,5 +113,40 @@ let penguin = new Penguin();
 // console.log(penguin.fly());
 
 
-// static method
+// static method -> only class can call a static method; nobody else.
 
+class Calculator {
+    static add (a, b){
+        return a+b
+    }
+}
+// let miniCalc = new Calculator();
+// console.log(miniCalc.add(2,3));
+// console.log(Calculator.add(2,7));    // only class can call the static method. (you can't create an object of it)
+
+// Getters and Setters
+class Employee {
+    #salary;
+    constructor(name, salary){
+        if (salary < 0) {
+            throw new Error("Salary cannot be negative.");
+        }
+        this.name = name
+        this.#salary = salary
+    }
+    get salary(){
+        return `You are not allowed to see the salary`
+    }
+
+    set salary(value){
+        if (value < 0) {
+            console.error("Invalid Salary");
+        } else{
+            this._salary = value;
+        }
+    }
+
+}
+let newEmp = new Employee("Alice", -50000);
+// console.log(newEmp._salary);
+// newEmp.salary = 60000;
