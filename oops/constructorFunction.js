@@ -45,4 +45,4 @@ function Drink(name){
     this.name = name;
 }
 let tea = new Drink("Tea")
-let coffee = new Drink("Coffee")
+// let coffee =  Drink("Coffee") will throw an error as missing new keyword
