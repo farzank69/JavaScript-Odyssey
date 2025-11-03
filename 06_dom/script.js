@@ -28,3 +28,10 @@ document.getElementById("removeLastTask").addEventListener('click', function (){
     let taskList = document.getElementById("taskList");
     taskList.lastElementChild.remove();
 });
+
+
+// example 6
+document.getElementById("clickMeButton").addEventListener
+('mouseover', function() {
+    alert("Mouse has been hovered...")
+});
