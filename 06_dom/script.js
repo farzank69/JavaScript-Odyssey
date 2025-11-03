@@ -10,3 +10,10 @@ document.getElementById("highlightFirstCity").addEventListener("click", function
 });
 
 //example 3
+document.getElementById("changeOrder").addEventListener("click", function(){
+    let coffeeType = document.getElementById("coffeeType");
+    coffeeType.textContent = "Espresso";
+    coffeeType.style.backgroundColor = "brown";
+});
+
+//example 4
