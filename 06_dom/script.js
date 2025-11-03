@@ -4,3 +4,9 @@ document.getElementById("changeTextButton").addEventListener("click", function()
 })
 
 // example 2
+document.getElementById("highlightFirstCity").addEventListener("click", function(){
+    let citiesList = document.getElementById("citiesList");
+    citiesList.firstElementChild.classList.add("highlight");
+});
+
+//example 3
