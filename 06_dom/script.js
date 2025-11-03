@@ -43,3 +43,11 @@ document.getElementById("teaList").addEventListener
         alert("You have selected: " + event.target.textContent);
     }
 });
+
+// example 8
+document.getElementById("feedbackForm").addEventListener
+('submit', function(event){
+    event.preventDefault();
+    let feedback = document.getElementById("feedbackInput").value;
+    document.getElementById("feedbackDisplay").textContent = `Feedback is: ${feedback}`;
+});
