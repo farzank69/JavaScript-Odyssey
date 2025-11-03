@@ -35,3 +35,11 @@ document.getElementById("clickMeButton").addEventListener
 ('mouseover', function() {
     alert("Mouse has been hovered...")
 });
+
+// example 7
+document.getElementById("teaList").addEventListener
+('click', function(event){  
+    if (event.target && event.target.matches(".teaItem")) {
+        alert("You have selected: " + event.target.textContent);
+    }
+});
