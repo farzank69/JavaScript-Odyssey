@@ -117,3 +117,37 @@ function getArea(shape: Shape){
             return _defaultforshape
     }
 }
+
+function isString(val: unknown): val is string {
+    return typeof val === "string"
+}
+
+function example(foo: unknown) {
+    if (isString(foo)) {
+        foo // foo is string here
+    } else {
+        foo // foo is unknown here
+    }
+}
+// use of 'unknown' type
+function safeParse(json: string): unknown {
+    return JSON.parse(json)
+}
+
+const obj = safeParse('{"name":"John", "age":30}')
+
+if (typeof obj === "object" && obj !== null) {
+    console.log((obj as { name: string }).name)
+}
+
+// use of 'never' type
+function fail(msg: string): never {
+    throw new Error(msg)
+}
+
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+
+export {}   
