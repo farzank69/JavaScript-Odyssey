@@ -72,3 +72,11 @@ class sellable<T>{
         this.cart.push(product)      // whatever type of product it will be; get pushed into the cart.
     }
 }
+
+const sellableQuiz = new sellable<quiz>()
+sellableQuiz.addToCart({name: "math quiz", type: "maths"})
+
+const sellableCourse = new sellable<course>()
+sellableCourse.addToCart({name: "react course", author: "farzan", subject: "web dev"})
+    console.log("obj is ", obj)
+}

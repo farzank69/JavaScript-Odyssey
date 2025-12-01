@@ -150,4 +150,4 @@ function infiniteLoop(): never {
     }
 }
 
-export {}   
+export {}
