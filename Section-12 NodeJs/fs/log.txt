@@ -15,3 +15,5 @@
 1764971065361: /signup New Req Received
 1764971118438: GET /signup New Req Received
 1764971145170: GET / New Req Received
+1764971970032: GET / New Req Received
+1764971971716: GET / New Req Received
