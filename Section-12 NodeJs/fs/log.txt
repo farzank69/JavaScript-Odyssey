@@ -7,3 +7,7 @@
 1764884190886: /favicon.ico New Req Received
 1764884205299: /contact-us New Req Received
 1764884205380: /favicon.ico New Req Received
+1764967320714: / New Req Received
+1764967370798: /search?search_query=javascipt+tic+tac+toe New Req Received
+1764967389207: /search?search_query=javascipt+tic+tac+toe New Req Received
+1764967395692: /search?search_query=javascipt+tic+tac+toe New Req Received
