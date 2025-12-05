@@ -11,3 +11,7 @@
 1764967370798: /search?search_query=javascipt+tic+tac+toe New Req Received
 1764967389207: /search?search_query=javascipt+tic+tac+toe New Req Received
 1764967395692: /search?search_query=javascipt+tic+tac+toe New Req Received
+1764971020711: / New Req Received
+1764971065361: /signup New Req Received
+1764971118438: GET /signup New Req Received
+1764971145170: GET / New Req Received
