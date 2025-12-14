@@ -10,6 +10,11 @@ interface Props {
     onUpdate: (user: User) => void;
 }
 
+interface State {
+    name: string;
+    email: string;
+}    
+
 function UserProfileEditor({ user, onUpdate }: Props) {
     const [name, setName] = useState<string>(user.name)
     const [email, setEmail] = useState<string>(user.email)
