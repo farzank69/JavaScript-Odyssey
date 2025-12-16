@@ -28,3 +28,5 @@ const farzan: Admin = {dbId: 774, email: "fk@gmail.com", userId: 4667,
 }
 farzan.email = "f@yahoo.com"
 // farzan.dbId = 335 // this is wrong as it is readonly
+
+export {}
