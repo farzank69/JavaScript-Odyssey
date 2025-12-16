@@ -32,6 +32,7 @@
 
 // READONLY and optional
 
+
 type User = {
     readonly _id: string     // you can't change the type of this id (referring to mongodb id)
     name: string;
@@ -59,7 +60,11 @@ type cardDetails = cardNumber & cardDate & {cvv: number}  // & here to combine t
 myUser.email = "farzan@gmail.com"
 // myUser._id = "asdf"    // can change as it is only readonly
 
-
+let myCardDetails: cardDetails = {
+    cardnumber: "1234 5678 9101 1121",
+    cardDate: "10/05",
+    cvv: 123
+}   
 
 
 

@@ -32,6 +32,14 @@ function getDbId(id: number | string){
     }
 }
 
+function getDbId2(id: number | string){
+    id.toString()      // this method is available for both number and string type so no need to check the type here
+}
+
+getDbId2(3)
+getDbId2("3")   
+
+
 // array
  
 const data: number[] = [1,2,3]
