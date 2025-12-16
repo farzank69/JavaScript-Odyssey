@@ -19,5 +19,10 @@ function getGame(){
 }
 game = getGame()
 
+let hero: string | number
+
+hero = "Batman"
+hero = 23       
+
 
 export {}
