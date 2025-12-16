@@ -41,4 +41,9 @@ function handleError(errmsg: string): never{
     throw new Error(errmsg);
 }
 
+function main(): void{  
+    console.log("hello world");
+}
+main()  
+
 export {}
