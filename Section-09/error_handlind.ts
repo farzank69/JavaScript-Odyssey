@@ -39,3 +39,30 @@ function validateUser(user: any) {
     throw new ValidationError('Invalid email format', 'email');
   }
 }
+
+// Type guards 
+function isErrorWithMessage(error: unknown): error is { message: string } {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'message' in error &&
+    typeof (error as Record"">).message === 'string'
+  );
+}
+
+function isValidationError(error: unknown): error is ValidationError {
+  return error instanceof ValidationError;
+}
+
+// Usage in catch block
+try {
+  validateUser({});
+} catch (error: unknown) {
+  if (isValidationError(error)) {
+    console.error(`Validation error in ${error.field}: ${error.message}`);
+  } else if (isErrorWithMessage(error)) {
+    console.error('An error occurred:', error.message);
+  } else {
+    console.error('An unknown error occurred');
+  }
+}
