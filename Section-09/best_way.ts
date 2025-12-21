@@ -14,3 +14,19 @@ function add(a: number, b: number): number {
 function addtwo(a: number, b: number) {
   return a + b;
 }
+
+// Bad: Using 'any' type
+let data: any = 'Hello World';
+
+// Good: Use specific types
+let message: string = 'Hello World';
+
+// Bad: Using non-null assertion operator unnecessarily
+function getLength(str?: string) {
+  return str!.length;
+}
+
+// Good: Handle undefined properly
+function getLengthSafe(str?: string) {
+  return str ? str.length : 0;
+}
