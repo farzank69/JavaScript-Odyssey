@@ -37,6 +37,10 @@ function consoleError(errmsg: string): void{
     // return 1      this will throw error as output is void; it won't return anything.
 }
 
+function todaysWeather(): {date: Date, weather: string}{
+    return {date: new Date(), weather: "sunny"}
+}   
+
 function handleError(errmsg: string): never{
     throw new Error(errmsg);
 }
