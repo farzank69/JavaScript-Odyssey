@@ -11,6 +11,10 @@ interface Weather {
     weather: string;
 }
 
+type WeatherFunction = () => Weather;
+
+const getWeather: WeatherFunction = todaysWeather;      
+
 let weatherToday = todaysWeather();
 console.log(`Date: ${weatherToday.date}, Weather: ${weatherToday.weather}`);
 
