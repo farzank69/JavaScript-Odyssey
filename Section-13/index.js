@@ -48,6 +48,9 @@ app.get('/api/users/:id', (req, res) => {
 
 app.post('/api/users', (req, res) => {
     const body = req.body;
+    if (!body){
+        return res.status(400).json({status: "error", message: "all fields are required"})
+    }
     // console.log("body", body);
     users.push({...body, id: users.length+1});
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err, data) => {
