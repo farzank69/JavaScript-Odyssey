@@ -33,6 +33,8 @@ app.get('/users', (req, res) => {
 
 // ROUTES -> REST APIs
 app.get('/api/users', (req, res) => {
+    // res.setHeader('X-MyName', 'Farzan Khan') // Testing out custom headers
+    // always add X to custom headers; its a good practice
     return res.json(users);
 })
 
