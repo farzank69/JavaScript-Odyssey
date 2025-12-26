@@ -7,6 +7,20 @@ const PORT = 8000;
 
 app.use(express.urlencoded({extended: false}))
 
+// Middleware 1
+// app.use((req, res, next) => {
+//     console.log("Hello from Middleware1");
+//     // return res.end("Done from Middleware");
+//     // next();
+// })
+
+// Middleware 2
+app.use((req, res, next) => {
+    fs.appendFile('./log.txt', `\n${Date.now()} : ${req.method} : ${req.path}`, (err, data) => {    
+        next();
+    })
+})
+
 // SSR
 app.get('/users', (req, res) => {
     const html = `
