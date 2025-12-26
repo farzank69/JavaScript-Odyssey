@@ -59,7 +59,17 @@ app.patch('/api/users/:id', (req, res) => {
 })
 app.delete('/api/users/:id', (req, res) => {
     // Delete the user with id
-    return res.json({status: 'pending'});
+    const id = Number(req.params.id)
+    const userIndex = users.findIndex((user) => user.id === id);
+    if (userIndex === -1){return res.status(404).json({status: "error", message: "user not found"}) }
+    users.splice(userIndex, 1);
+
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+        if (err){
+            res.status(500).json({status: "error", message:"Failed to delete user"});
+        }
+        return res.json({status: "success", message: "user deleted successfully" })
+    })
 })
 
 // if same route is there with different http methods. (grouping)
