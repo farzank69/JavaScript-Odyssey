@@ -1,9 +1,42 @@
 const express = require('express');
 const fs = require('fs');
-const users = require('./MOCK_DATA.json'); 
+const mongoose = require('mongoose');
+// const users = require('./MOCK_DATA.json'); 
 
 const app = express();
 const PORT = 8000;
+
+//connection
+mongoose.connect("mongodb://127.0.0.1:27017/testdb")
+.then(() => console.log('mongoDB Connected'))
+.catch((err) => console.log("mongo error", err));
+
+//Schema
+const userSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    jobTitle: {
+        type: String,
+    },
+    gender: {
+        type: String,
+    },
+}, 
+    {timestamps: true}
+)
+
+// model 
+const User = mongoose.model("user", userSchema)
 
 app.use(express.urlencoded({extended: false}))
 
@@ -22,42 +55,49 @@ app.use((req, res, next) => {
 })
 
 // SSR
-app.get('/users', (req, res) => {
+app.get('/users', async(req, res) => {
+    const allDbUsers = await User.find({ });
     const html = `
     <ul>
-        ${users.map((user) => `<li>${user.first_name}</li>`).join("")}
+        ${allDbUsers.map((user) => `<li>${user.firstName} - ${user.email}</li>`).join("")}
     </ul
     `;
     return res.send(html)
 } )
 
 // ROUTES -> REST APIs
-app.get('/api/users', (req, res) => {
+app.get('/api/users', async(req, res) => {
+    const allDbUsers = await User.find({ });
+
     // res.setHeader('X-MyName', 'Farzan Khan') // Testing out custom headers
     // always add X to custom headers; its a good practice
-    return res.json(users);
+    return res.json(allDbUsers);
 })
 
 // get respective user
-app.get('/api/users/:id', (req, res) => {
-    const id = Number(req.params.id);
-    const user = users.find((user) => user.id === id);
+app.get('/api/users/:id', async(req, res) => {
+    const user = await User.findById(req.params.id);
     return res.json(user);
-
 })
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', async(req, res) => {
     const body = req.body;
     if (!body){
         return res.status(400).json({status: "error", message: "all fields are required"})
     }
     // console.log("body", body);
-    users.push({...body, id: users.length+1});
-    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err, data) => {
-        return res.status(201).json({status: "success", id: users.length})
-    })
+    const result = await User.create({
+        firstName: body.first_name,
+        lastName: body.last_name,
+        email: body.email,
+        gender: body.gender,
+        jobTitle: body.job_title,
+    });
+    console.log("Data", result);
+    
+    return res.status(201).json({message: "success"})
 })
-app.patch('/api/users/:id', (req, res) => {
+app.patch('/api/users/:id', async(req, res) => {
     // Edit the user with ID
     const id = Number(req.params.id)
     const userIndex = users.findIndex((user) => user.id === id)
