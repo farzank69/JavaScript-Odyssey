@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const mongoose = require('mongoose');
-// const users = require('./MOCK_DATA.json'); 
 
 const app = express();
 const PORT = 8000;
@@ -99,36 +98,45 @@ app.post('/api/users', async(req, res) => {
 })
 app.patch('/api/users/:id', async(req, res) => {
     // Edit the user with ID
-    const id = Number(req.params.id)
-    const userIndex = users.findIndex((user) => user.id === id)
+    const body = req.body;
 
-    if (userIndex === -1){
-        return res.status(404).json({status: "error", message: "user not found"});
+    if (!body || Object.keys(body).length === 0){
+        return res.status(400).json({status: "error", message: "No fields to update"});
     }
 
-    const body = req.body
-    users[userIndex] = {...users[userIndex], ...body};
+    try{
+        const updateFields = {};
+        if (body.first_name) updateFields.firstName = body.first_name;
+        if (body.last_name) updateFields.lastName = body.last_name;
+        if (body.email) updateFields.email = body.email
+        if (body.gender) updateFields.gender = body.gender
+        if (body.job_title) updateFields.jobTitle = body.job_title
 
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
-        if (err){
-            res.status(500).json({status: "error", message:"Failed to update user"});
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            updateFields,
+            { new:true, runValidators: true })
+        if (!updatedUser){
+            return res.status(404).json({status: "error", message: "user not found!"})
         }
-        return res.json({status: "success", user: users[userIndex]})
-    })
+        return res.json({status: "success", user: updatedUser})
+    } catch (error){
+        console.log("Error updating user: ", error);
+        return res.status(500).json({status: "error", message: "Failed to update user"})
+    }
 })
-app.delete('/api/users/:id', (req, res) => {
+app.delete('/api/users/:id', async(req, res) => {
     // Delete the user with id
-    const id = Number(req.params.id)
-    const userIndex = users.findIndex((user) => user.id === id);
-    if (userIndex === -1){return res.status(404).json({status: "error", message: "user not found"}) }
-    users.splice(userIndex, 1);
+    try {
+        const deleteUser = await User.findByIdAndDelete(req.params.id);
 
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
-        if (err){
-            res.status(500).json({status: "error", message:"Failed to delete user"});
+        if(!deleteUser){
+            return res.status(404).json({status: "error", message: "user not found"})
         }
-        return res.json({status: "success", message: "user deleted successfully" })
-    })
+        return res.json({status: "success", message: "user deleted successfully"})
+    } catch (error) {
+        return res.status(500).json({status: "error", message: "Failed to delete user"})
+    }
 })
 
 // if same route is there with different http methods. (grouping)
