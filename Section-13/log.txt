@@ -12,3 +12,11 @@
 1766840247300 : GET : /api/users
 1766840384793 : GET : /api/users/
 1766840398435 : GET : /api/users/694fd69a79f34741603e470d
+1766944865186 : GET : /api/users/
+1766944895070 : POST : /api/users
+1766944899398 : GET : /api/users/
+1766944913781 : GET : /api/users/6951707fa22a0f7aacdc7e5a
+1766944934782 : PATCH : /api/users/6951707fa22a0f7aacdc7e5a
+1766944943052 : GET : /api/users/6951707fa22a0f7aacdc7e5a
+1766944950091 : DELETE : /api/users/6951707fa22a0f7aacdc7e5a
+1766944953533 : GET : /api/users/6951707fa22a0f7aacdc7e5a
