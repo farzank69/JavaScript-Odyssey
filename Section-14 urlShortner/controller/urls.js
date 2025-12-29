@@ -50,9 +50,16 @@ async function handleGetAllUrls(req, res){
   });
 }
 
+async function handleDeleteUrlById(req, res){
+  const shortId = req.params.shortId;
+  await URL.findOneAndDelete({ shortId });
+  return res.redirect("/")
+}
+
 module.exports = {
   handleGenerateShortUrl,
   handleGetShortId,
   handleGetAnalytics,
   handleGetAllUrls,
+  handleDeleteUrlById,
 };
