@@ -1,12 +1,7 @@
 const express = require("express");
-const URL = require("../models/url");
+const { handleGetAllUrls } = require("../controller/urls")
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const allUrls = await URL.find({});
-  return res.render("home", {
-    urls: allUrls,
-  });
-});
+router.get("/", handleGetAllUrls);
 
 module.exports = router;

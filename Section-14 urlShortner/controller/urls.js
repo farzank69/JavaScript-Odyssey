@@ -43,8 +43,16 @@ async function handleGetAnalytics(req, res) {
   });
 }
 
+async function handleGetAllUrls(req, res){
+  const allUrls = await URL.find({});
+  return res.render("home", {
+    urls: allUrls,
+  });
+}
+
 module.exports = {
   handleGenerateShortUrl,
   handleGetShortId,
   handleGetAnalytics,
+  handleGetAllUrls,
 };
