@@ -4,7 +4,7 @@ const urlRoute = require("./routes/urls");
 const staticRoute = require("./routes/staticRouter")
 
 const { connectMongoDb } = require("./connection");
-const URL = require("./models/url");
+// const URL = require("./models/url");
 
 const app = express();
 const PORT = 8001;
