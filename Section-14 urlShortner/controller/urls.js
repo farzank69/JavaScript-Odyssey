@@ -56,13 +56,6 @@ async function handleDeleteUrlById(req, res){
   return res.redirect("/")
 }
 
-async function handleUpdateUrlById(req, res){
-  const shortId = req.params.shortId
-  const newUrl = req.body.url;
-  await URL.findOneAndUpdate({ shortId }, { redirectUrl: newUrl});
-  return res.redirect("/")
-}
-
 module.exports = {
   handleGenerateShortUrl,
   handleGetShortId,
