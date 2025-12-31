@@ -26,6 +26,16 @@ app.use(logReqRes('log.txt'));
 // SSR
 app.use("/api/users", userRouter);
 
+// Basic Routing
+// app.get('/api/users', (req, res) => {
+//     const users = [      
+//         { id: 1, name: "John" },
+//         { id: 2, name: "Jane" },
+//         { id: 3, name: "Bob" },
+//     ];
+//     return res.json(users);
+// });  
+
 // if same route is there with different http methods. (grouping)
 // app.route('/api/users/:id').get((req, res) => {
 //     const id = Number(req.params.id);
