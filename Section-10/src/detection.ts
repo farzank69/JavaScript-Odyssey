@@ -150,4 +150,9 @@ function infiniteLoop(): never {
     }
 }
 
+// Generics
+// function identity(arg: any): any {
+//     return arg
+//          
+
 export {}
