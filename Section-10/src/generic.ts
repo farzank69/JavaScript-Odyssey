@@ -80,3 +80,24 @@ const sellableCourse = new sellable<course>()
 sellableCourse.addToCart({name: "react course", author: "farzan", subject: "web dev"})
     console.log("obj is ", obj)
 }
+
+function objToString<T>(obj: T): string {
+    return JSON.stringify(obj)
+}
+
+const stringifiedObj = objToString({name: "Farzan", age: 26, isAdmin: true})
+console.log(stringifiedObj)
+
+// Generic Constraints
+interface Database{
+    connection: string,
+    username: string,
+    password: string
+}
+
+function getUser<T, U extends string>(valOne: T, valTwo: U): object {                   
+    return { 
+        valOne,
+        valTwo
+    }
+}       
