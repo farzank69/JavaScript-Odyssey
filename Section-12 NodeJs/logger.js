@@ -26,3 +26,5 @@ setInterval(() => {
 
 logger.log('Application started')
 logger.log('Application event occurred')
+
+module.exports = logger
