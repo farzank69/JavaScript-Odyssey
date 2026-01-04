@@ -23,6 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 // Middleware 2
 app.use(logReqRes('log.txt'));
 
+// Middleware to parse JSON body
+app.use(express.json());
+
 // SSR
 app.use("/api/users", userRouter);
 
