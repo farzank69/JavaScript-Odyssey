@@ -5,6 +5,9 @@ const yargs = require('yargs');
 const app = express();
 const cache = new Map(); // In-memory cache
 
+// Capture raw body for forwarding to origin (useful for non-GET requests)
+app.use(express.raw({ type: '*/*' }));
+
 const argv = yargs
   .option('port', {
     alias: 'p',
@@ -40,9 +43,10 @@ const PORT = argv.port;
 const ORIGIN = argv.origin;
 
 app.use(async (req, res) => {
-  const key = req.originalUrl; // Use the original URL as the cache key
+  const key = `${req.method}:${req.originalUrl}`; // method + URL as the cache key
 
-  if (cache.has(key)) {
+  // Only serve cached responses for idempotent GET requests
+  if (req.method === 'GET' && cache.has(key)) {
     console.log(`Cache HIT for ${key}`);
     const cachedResponse = cache.get(key);
     // Set cached headers
@@ -54,7 +58,7 @@ app.use(async (req, res) => {
   }
 
   try {
-    console.log(`Cache MISS for ${key}. Fetching from origin: ${ORIGIN}${key}`);
+    console.log(`Cache MISS for ${key}. Fetching from origin: ${ORIGIN}${req.originalUrl}`);
     const response = await axios({
       method: req.method,
       url: `${ORIGIN}${req.originalUrl}`,
@@ -62,12 +66,21 @@ app.use(async (req, res) => {
       data: req.body, // Forward original body
     });
 
-    // Cache the response
-    cache.set(key, {
-      status: response.status,
-      headers: response.headers,
-      data: response.data,
-    });
+    // Respect Cache-Control from origin and cache only GET 200 responses
+    const cacheControl = String(response.headers['cache-control'] || '').toLowerCase();
+    const cacheable =
+      req.method === 'GET' &&
+      response.status === 200 &&
+      !cacheControl.includes('no-store') &&
+      !cacheControl.includes('no-cache');
+
+    if (cacheable) {
+      cache.set(key, {
+        status: response.status,
+        headers: response.headers,
+        data: response.data,
+      });
+    }
 
     // Set response headers from origin
     for (const header in response.headers) {
