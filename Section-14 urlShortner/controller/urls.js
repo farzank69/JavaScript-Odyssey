@@ -11,6 +11,7 @@ async function handleGenerateShortUrl(req, res) {
     shortId: shortID,
     redirectUrl: body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
   return res.render('home', {
     id: shortID,
@@ -44,7 +45,9 @@ async function handleGetAnalytics(req, res) {
 }
 
 async function handleGetAllUrls(req, res){
-  const allUrls = await URL.find({});
+  if(!req.user) return res.redirect("/login");
+
+  const allUrls = await URL.find({ createdBy: req.user._id });
   return res.render("home", {
     urls: allUrls,
   });
