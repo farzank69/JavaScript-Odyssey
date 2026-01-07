@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path")
 const urlRoute = require("./routes/urls");
 const staticRoute = require("./routes/staticRouter")
+const userRoute = require("./routes/user")
 
 const { connectMongoDb } = require("./connection");
 // const URL = require("./models/url");
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve("./views"))
 
 app.use("/url", urlRoute);
+app.use("/user", userRoute);
 app.use("/", staticRoute);
 
 // app.get('/test' ,async (req, res) => {
