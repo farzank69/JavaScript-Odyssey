@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const yargs = require('yargs');
+const { hideBin } = require('yargs/helpers')
 
 const app = express();
 const cache = new Map(); // In-memory cache
@@ -8,7 +9,7 @@ const cache = new Map(); // In-memory cache
 // Capture raw body for forwarding to origin (useful for non-GET requests)
 app.use(express.raw({ type: '*/*' }));
 
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .option('port', {
     alias: 'p',
     description: 'Port for the caching proxy server',
@@ -28,7 +29,7 @@ const argv = yargs
   .help()
   .alias('help', 'h').argv;
 
-if (argv.clearCache) {
+if (argv['clear-cache']) {
   cache.clear();
   console.log('Cache cleared!');
   process.exit(0);
@@ -36,6 +37,7 @@ if (argv.clearCache) {
 
 if (!argv.origin) {
   console.error('Error: --origin is required.');
+  console.log('Received argv:', argv);  
   process.exit(1);
 }
 
