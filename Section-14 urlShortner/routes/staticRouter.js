@@ -1,9 +1,10 @@
 const express = require("express");
-const { handleGetAllUrls } = require("../controller/urls")
+const { handleGetAllUrls } = require("../controller/urls");
+const { restrictTo } = require("../middlewares/auth");
 const router = express.Router();
 
 // static route to render the home page
-router.get("/", handleGetAllUrls);
+router.get("/", restrictTo(["NORMAL"]), handleGetAllUrls);
 
 router.get("/signup", (req, res) => {
     return res.render("signup");
